@@ -74,16 +74,10 @@ img {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 16px;
   border-radius: 16px;
-  width: 150px;
+  width: 140px;
   height: 160px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
-}
-.player-choice {
-  margin-left: 0.5rem;
-}
-.computer-choice {
-  margin-right: 0.5rem;
 }
 
 .buttons {
@@ -132,7 +126,7 @@ img {
   user-select: none;
   touch-action: manipulation;
   will-change: box-shadow, transform;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .button-29:focus {
@@ -171,7 +165,12 @@ img {
   border-radius: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
-  height: 230px;
+}
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .text-result {
