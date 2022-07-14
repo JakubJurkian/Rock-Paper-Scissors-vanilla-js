@@ -41,7 +41,7 @@ const selectHandler = (choice) => {
   if (afterCheckingResult) {
     return;
   }
-  playerChoiceBtn.src = `./../assets/images/${choice}.png`;
+  playerChoiceBtn.src = `../assets/images/${choice}.png`;
   playerChoiceBtn.style.height = "130px";
   playerChoice = choice;
   resultBtn.disabled = false;
@@ -57,7 +57,7 @@ resultBtn.addEventListener("click", () => {
   }
   afterCheckingResult = true;
   computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  computerChoiceBtn.src = `./../assets/images/${computerChoice}.png`;
+  computerChoiceBtn.src = `../assets/images/${computerChoice}.png`;
   const result = whoWin(playerChoice, computerChoice);
   resultText.textContent = result;
   resetBtn.disabled = false;
