@@ -72,6 +72,6 @@ resetBtn.addEventListener("click", () => {
   resetBtn.disabled = true;
   resultBtn.disabled = true;
   afterCheckingResult = false;
-  playerChoiceBtn.src = `../assets/images/question.png`;
-  computerChoiceBtn.src = `../assets/images/question.png`;
+  playerChoiceBtn.src = `./assets/images/question.png`;
+  computerChoiceBtn.src = `./assets/images/question.png`;
 });
