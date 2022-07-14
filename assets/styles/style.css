@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 body {
@@ -31,13 +31,15 @@ img {
 .players {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid rgb(255, 255, 255);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 24px;
   justify-content: space-between;
   height: 25%;
   font-size: 16px;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
+    rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 .player {
   margin-left: 1rem;
@@ -56,6 +58,12 @@ img {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
+.players-choices-text {
+  font-weight: 900;
+  text-shadow: 0 2px 1px rgba(156, 125, 208, 0.4),
+    -1px 3px 1px rgba(156, 125, 208, 0.4), -2px 5px 1px rgba(156, 125, 208, 0.4);
+}
+
 .player-choice,
 .computer-choice {
   background-color: rgba(255, 255, 255, 0.9);
@@ -63,6 +71,8 @@ img {
   border-radius: 16px;
   width: 150px;
   height: 160px;
+  box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
+    rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 .player-choice {
   margin-left: 1rem;
@@ -78,7 +88,6 @@ img {
   justify-content: space-between;
   height: 35%;
   background-color: rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .btn {
@@ -86,6 +95,61 @@ img {
   border-radius: 16px;
   background-color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
+  width: 100px;
+  box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
+    rgba(156, 125, 208, 0.4) 0px 6px 6px;
+}
+
+.btn:active {
+  animation: press 0.2s 1 linear;
+}
+
+.button-29 {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 74px;
+  padding: 0 16px 0 16px;
+  position: relative;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  touch-action: manipulation;
+  will-change: box-shadow, transform;
+  font-size: 24px;
+}
+
+.button-29:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-29:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-29:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+.button-29:disabled {
+  background-image: none;
+  background-color: #b5b9d6;
+  color: rgb(230, 230, 230);
+  cursor: not-allowed;
 }
 
 .btn:hover {
@@ -100,7 +164,7 @@ img {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
   border-radius: 8px;
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
 }
 
@@ -109,21 +173,16 @@ img {
   font-size: 3rem;
 }
 
-.result-btn,
-.reset-btn {
-  padding: 24px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  border: none;
-  color: black;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.reset-btn:disabled,
-.result-btn:disabled {
-  cursor: not-allowed;
+@keyframes press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @media (min-width: 576px) {
@@ -136,6 +195,12 @@ img {
 }
 
 @media (min-width: 776px) {
+  .container {
+    width: 70%;
+  }
+  .result {
+    width: 70%;
+  }
   .player-choice {
     margin-left: 4rem;
   }

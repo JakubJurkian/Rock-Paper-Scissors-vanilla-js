@@ -44,6 +44,7 @@ const selectHandler = (choice) => {
   playerChoiceBtn.src = `../assets/images/${choice}.png`;
   playerChoiceBtn.style.height = "130px";
   playerChoice = choice;
+  resultBtn.disabled = false;
 };
 
 rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
@@ -68,7 +69,7 @@ resetBtn.addEventListener("click", () => {
   computerChoice = null;
   resultText.textContent = null;
   resetBtn.disabled = true;
-  resultBtn.disabled = false;
+  resultBtn.disabled = true;
   afterCheckingResult = false;
   playerChoiceBtn.src = `../assets/images/question.png`;
   computerChoiceBtn.src = `../assets/images/question.png`;
