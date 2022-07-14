@@ -22,28 +22,31 @@
 
       <div class="players-choices">
         <div class="player-choice">
-          <img src="/assets/images/question.png" alt="player-choice" />
+          <img class="player-choice-img" src="/assets/images/question.png" alt="player-choice" />
         </div>
+        <p class="players-choices-text">VS</p>
         <div class="computer-choice">
-          <img src="/assets/images/question.png" alt="computer-choice" />
+          <img class="computer-choice-img" src="/assets/images/question.png" alt="computer-choice" />
         </div>
       </div>
 
       <div class="buttons">
-        <div class="btn">
+        <div class="btn rock">
             <img src="/assets/images/rock.png" alt="rock" />
         </div>
-        <div class="btn">
+        <div class="btn paper">
           <img src="/assets/images/paper.png" alt="paper" />
         </div>
-        <div class="btn">
+        <div class="btn scissors">
           <img src="/assets/images/scissors.png" alt="scissors" />
         </div>
       </div>
 
     </div>
     <div class="result">
-      <p>The winner is:</p>
+      <button class="result-btn">Check the result</button>
+      <p class="text-result"></p>
+      <button class="reset-btn" disabled>Next game</button>
     </div>
   </body>
 </html>
