@@ -41,6 +41,10 @@ img {
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
+.player,
+.computer {
+  height: 100px;
+}
 
 .player {
   margin-left: 1rem;
@@ -76,10 +80,10 @@ img {
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 .player-choice {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 .computer-choice {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 .buttons {
@@ -167,6 +171,7 @@ img {
   border-radius: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
+  height: 230px;
 }
 
 .text-result {
