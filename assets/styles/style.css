@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  background-image: linear-gradient(#dc2424, #4a569d);
+  height: 100vh;
+}
+
+.container {
+  width: 98%;
+  margin: 0.5rem auto;
+  height: 500px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.players {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid rgb(255, 255, 255);
+  padding: 24px;
+  justify-content: space-between;
+  height: 25%;
+  font-size: 16px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.player {
+  margin-left: 1rem;
+}
+.computer {
+  margin-right: 1rem;
+}
+
+.players-choices {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 24px;
+  justify-content: space-between;
+  align-items: center;
+  height: 40%;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.player-choice,
+.computer-choice {
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  width: 150px;
+}
+.player-choice {
+  margin-left: 1rem;
+}
+.computer-choice {
+  margin-right: 1rem;
+}
+
+.buttons {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  height: 35%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.btn {
+  padding: 16px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255);
+}
+
+.result {
+  padding: 24px;
+  font-size: 32px;
+  width: 98%;
+  margin: 0.5rem auto;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+@media (min-width: 576px) {
+  .player-choice {
+    margin-left: 3rem;
+  }
+  .computer-choice {
+    margin-right: 3rem;
+  }
+}
+
+@media (min-width: 776px) {
+  .player-choice {
+    margin-left: 4rem;
+  }
+  .computer-choice {
+    margin-right: 4rem;
+  }
+}
