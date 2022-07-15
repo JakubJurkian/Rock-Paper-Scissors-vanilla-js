@@ -13,8 +13,9 @@ body {
 
 .container {
   width: 98%;
-  margin: 0.5rem auto;
-  height: 500px;
+  min-width: 350px;
+  margin: 0.4rem auto;
+  height: 415px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -34,7 +35,7 @@ img {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 24px;
   justify-content: space-between;
-  height: 25%;
+  height: 23%;
   font-size: 16px;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.15);
@@ -43,14 +44,24 @@ img {
 }
 .player,
 .computer {
-  height: 100px;
+  height: 90px;
 }
 
-.player {
-  margin-left: 1rem;
-}
+.player,
 .computer {
-  margin-right: 1rem;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.computer-points {
+  font-size: 48px;
+  order: -1;
+}
+
+.player-points {
+  font-size: 48px;
 }
 
 .players-choices {
@@ -59,11 +70,12 @@ img {
   padding: 24px;
   justify-content: space-between;
   align-items: center;
-  height: 40%;
+  height: 45%;
   background-color: rgba(255, 255, 255, 0.15);
 }
 
 .players-choices-text {
+  margin: 0 8px;
   font-weight: 900;
   text-shadow: 0 2px 1px rgba(156, 125, 208, 0.4),
     -1px 3px 1px rgba(156, 125, 208, 0.4), -2px 5px 1px rgba(156, 125, 208, 0.4);
@@ -74,15 +86,15 @@ img {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 16px;
   border-radius: 16px;
-  width: 140px;
-  height: 160px;
+  width: 130px;
+  height: 130px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 
 .buttons {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 24px;
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   height: 35%;
@@ -94,7 +106,8 @@ img {
   border-radius: 16px;
   background-color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  width: 100px;
+  width: 105px;
+  height: 110px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
@@ -156,9 +169,10 @@ img {
 }
 
 .result {
-  padding: 24px;
+  padding: 16px;
   font-size: 32px;
   width: 98%;
+  min-width: 350px;
   margin: 0.5rem auto;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
@@ -171,6 +185,10 @@ img {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.clear-btn {
+  margin-top: 8px;
 }
 
 .text-result {
@@ -190,26 +208,80 @@ img {
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 470px) {
   .player-choice {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
   .computer-choice {
-    margin-right: 3rem;
+    margin-right: 2rem;
   }
 }
 
-@media (min-width: 776px) {
+@media (min-width: 546px) {
   .container {
-    width: 70%;
+    width: 546px;
   }
   .result {
-    width: 70%;
+    width: 546px;
   }
+
+  .buttons {
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .btn {
+    width: 120px;
+    height: auto;
+  }
+
   .player-choice {
     margin-left: 4rem;
   }
   .computer-choice {
     margin-right: 4rem;
+  }
+  .player-choice,
+  .computer-choice {
+    width: 150px;
+    height: 150px;
+  }
+  .player {
+    margin-left: 1.5rem;
+  }
+  .computer {
+    margin-right: 1.5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .container {
+    margin: 2rem auto 0 auto;
+    width: 730px;
+    height: 500px;
+  }
+  .result {
+    width: 730px;
+  }
+
+  .players {
+    height: 20%;
+  }
+
+  .player-choice,
+  .computer-choice {
+    width: 190px;
+    height: 190px;
+  }
+
+  .player-choice {
+    margin-left: 7rem;
+  }
+  .computer-choice {
+    margin-right: 7rem;
+  }
+  .btn {
+    width: 170px;
+    height: 140px;
   }
 }
