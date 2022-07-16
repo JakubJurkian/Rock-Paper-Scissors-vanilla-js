@@ -71,16 +71,17 @@ scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
 
 resultBtn.addEventListener("click", () => {
   if (!playerChoice) return;
-
-  if (playerPoints > 0 || computerPoints > 0) {
-    clearBtn.disabled = false;
-  }
   
   afterCheckingResult = true;
   computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
   computerChoiceBtn.src = `./assets/images/${computerChoice}.png`;
   computerChoiceBtn.style.transform = "scaleX(-1)";
   const result = whoWin(playerChoice, computerChoice);
+
+  if (playerPoints > 0 || computerPoints > 0) {
+    clearBtn.disabled = false;
+  }
+
   resultText.textContent = result;
   resetBtn.disabled = false;
   resultBtn.disabled = true;
