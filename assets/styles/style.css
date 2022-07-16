@@ -81,7 +81,7 @@ img {
 }
 
 .players-choices-text {
-  margin: 0 8px;
+  margin: 0 4px;
   font-weight: 900;
   text-shadow: 0 2px 1px rgba(156, 125, 208, 0.4),
     -1px 3px 1px rgba(156, 125, 208, 0.4), -2px 5px 1px rgba(156, 125, 208, 0.4);
@@ -92,8 +92,8 @@ img {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 16px;
   border-radius: 16px;
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 120px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
@@ -113,7 +113,7 @@ img {
   background-color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   width: 105px;
-  height: 110px;
+  height: 100px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
@@ -221,6 +221,10 @@ img {
   .computer-choice {
     margin-right: 2rem;
   }
+
+  .btn {
+    width: 120px;
+  }
 }
 
 @media (min-width: 546px) {
@@ -237,19 +241,19 @@ img {
 
   .btn {
     width: 120px;
-    height: auto;
+    height: 100px;
   }
 
   .player-choice {
-    margin-left: 4rem;
+    margin-left: 3rem;
   }
   .computer-choice {
-    margin-right: 4rem;
+    margin-right: 3rem;
   }
   .player-choice,
   .computer-choice {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 130px;
   }
   .player {
     margin-left: 1.5rem;
@@ -286,15 +290,15 @@ img {
 
   .player-choice,
   .computer-choice {
-    width: 200px;
-    height: 180px;
+    width: 230px;
+    height: 170px;
   }
 
   .player-choice {
-    margin-left: 6rem;
+    margin-left: 5rem;
   }
   .computer-choice {
-    margin-right: 6rem;
+    margin-right: 5rem;
   }
   .btn {
     width: 150px;

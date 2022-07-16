@@ -60,18 +60,27 @@ const resetGame = () => {
   resetBtn.disabled = true;
   resultBtn.disabled = true;
   afterCheckingResult = false;
-  playerChoiceBtn.src = `./assets/images/question.png`;
-  computerChoiceBtn.src = `./assets/images/question.png`;
-  computerChoiceBtn.style.transform = "scaleX(1)";
+  playerChoiceBtn.src = `./assets/images/field.png`;
+  computerChoiceBtn.src = `./assets/images/field.png`;
 };
 
 rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
 paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
 scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
 
-resultBtn.addEventListener("click", () => {
+const loading = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, 800);
+  });
+};
+
+resultBtn.addEventListener("click", async () => {
   if (!playerChoice) return;
-  
+
+  resultBtn.textContent = 'Loading...';
+  await loading();
   afterCheckingResult = true;
   computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
   computerChoiceBtn.src = `./assets/images/${computerChoice}.png`;
@@ -83,19 +92,26 @@ resultBtn.addEventListener("click", () => {
   }
 
   resultText.textContent = result;
+  resultBtn.textContent = 'Run Game';
   resetBtn.disabled = false;
   resultBtn.disabled = true;
 });
 
-resetBtn.addEventListener("click", () => {
- resetGame();
+resetBtn.addEventListener("click", async () => {
+  resetBtn.textContent = 'Loading...';
+  await loading();
+  resetGame();
+  resetBtn.textContent = 'New Game';
 });
 
-clearBtn.addEventListener('click', () => {
+clearBtn.addEventListener('click', async () => {
+  clearBtn.textContent = 'Loading...';
+  await loading();
   playerPoints = 0;
   computerPoints = 0;
   playerPointsField.textContent = 0;
   computerPointsField.textContent = 0;
   clearBtn.disabled = true;
   resetGame();
+  clearBtn.textContent = 'Reset Score';
 });
