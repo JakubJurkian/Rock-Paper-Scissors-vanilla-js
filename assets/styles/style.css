@@ -224,9 +224,7 @@ img {
 }
 
 @media (min-width: 546px) {
-  .container {
-    width: 546px;
-  }
+  .container,
   .result {
     width: 546px;
   }
