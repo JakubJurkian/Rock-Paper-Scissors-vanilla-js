@@ -1,4 +1,4 @@
 # Rock-Paper-Scissors-Game
-The application was created by using vanilla JS, CSS and HTML.
-# How to open Rock-Pape-Scissors app?
+One of my first simple application created with HTML/CSS/JS (for practice).
+# How to open Rock-Pape-Scissors game?
 Just visit this link: https://htmlpreview.github.io/?https://github.com/JakubJurkian/Rock-Paper-Scissors-Game/blob/main/index.html
