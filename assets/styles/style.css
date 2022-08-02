@@ -90,7 +90,7 @@ img {
 .player-choice,
 .computer-choice {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 16px;
+  padding: 8px;
   border-radius: 16px;
   width: 140px;
   height: 120px;
@@ -116,6 +116,14 @@ img {
   height: 100px;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
+}
+
+.paper {
+  padding: 0 12px;
+}
+
+.scissors {
+  padding: 8px 8px 0 8px;
 }
 
 .btn:active {
@@ -292,6 +300,7 @@ img {
   .computer-choice {
     width: 230px;
     height: 170px;
+    padding: 16px;
   }
 
   .player-choice {

@@ -48,7 +48,18 @@ let afterCheckingResult = false;
 
 const selectHandler = (choice) => {
   if (afterCheckingResult) return;
-  playerChoiceBtn.src = `./assets/images/${choice}.png`;
+  
+  if (choice === 'paper') {
+    playerChoiceBtn.style.padding = '2px 0 0 0';
+  }
+  if (choice === 'scissors') {
+    playerChoiceBtn.style.padding = '12px 0 0 0';
+  } 
+  if (choice === 'rock') {
+    playerChoiceBtn.style.padding = '10px 14px 0 0';
+  }
+
+  playerChoiceBtn.src = `./assets/images/${choice}.svg`;
   playerChoice = choice;
   resultBtn.disabled = false;
 };
@@ -60,13 +71,9 @@ const resetGame = () => {
   resetBtn.disabled = true;
   resultBtn.disabled = true;
   afterCheckingResult = false;
-  playerChoiceBtn.src = `./assets/images/field.png`;
-  computerChoiceBtn.src = `./assets/images/field.png`;
+  playerChoiceBtn.src = `./assets/images/field.svg`;
+  computerChoiceBtn.src = `./assets/images/field.svg`;
 };
-
-rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
-paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
-scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
 
 const loading = () => {
   return new Promise(resolve => {
@@ -76,6 +83,10 @@ const loading = () => {
   });
 };
 
+rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
+paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
+scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
+
 resultBtn.addEventListener("click", async () => {
   if (!playerChoice) return;
 
@@ -83,7 +94,19 @@ resultBtn.addEventListener("click", async () => {
   await loading();
   afterCheckingResult = true;
   computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  computerChoiceBtn.src = `./assets/images/${computerChoice}.png`;
+
+  if (computerChoice === 'paper') {
+    computerChoiceBtn.style.padding = '2px 0 0 0';
+  }
+  if (computerChoice === 'scissors') {
+    computerChoiceBtn.style.padding = '12px 0 0 0';
+  } 
+  if (computerChoice === 'rock') {
+    computerChoiceBtn.style.padding = '10px 14px 0 0';
+  }
+
+
+  computerChoiceBtn.src = `./assets/images/${computerChoice}.svg`;
   computerChoiceBtn.style.transform = "scaleX(-1)";
   const result = whoWin(playerChoice, computerChoice);
 
