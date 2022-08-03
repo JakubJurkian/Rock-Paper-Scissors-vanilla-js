@@ -222,7 +222,7 @@ img {
   }
 }
 
-@media (min-width: 470px) {
+@media (min-width: 450px) {
   .player-choice {
     margin-left: 2rem;
   }

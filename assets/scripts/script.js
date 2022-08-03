@@ -48,17 +48,8 @@ let afterCheckingResult = false;
 
 const selectHandler = (choice) => {
   if (afterCheckingResult) return;
-  
-  if (choice === 'paper') {
-    playerChoiceBtn.style.padding = '2px 0 0 0';
-  }
-  if (choice === 'scissors') {
-    playerChoiceBtn.style.padding = '12px 0 0 0';
-  } 
-  if (choice === 'rock') {
-    playerChoiceBtn.style.padding = '10px 14px 0 0';
-  }
 
+  setPaddingToBtnFn(choice, playerChoiceBtn);
   playerChoiceBtn.src = `./assets/images/${choice}.svg`;
   playerChoice = choice;
   resultBtn.disabled = false;
@@ -83,6 +74,22 @@ const loading = () => {
   });
 };
 
+const setPaddingToBtnFn = (whoseChoice, whoseBtn) => {
+  switch(whoseChoice) {
+    case 'paper':
+      whoseBtn.style.padding = '2px 0 0 0';
+      break;
+    case 'scissors':
+      whoseBtn.style.padding = '14px 0 0 0';
+      break;
+    case 'rock':
+      whoseBtn.style.padding = '10px 14px 0 0';
+      break;
+    default:
+      //...
+  }
+};
+
 rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
 paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
 scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
@@ -94,17 +101,7 @@ resultBtn.addEventListener("click", async () => {
   await loading();
   afterCheckingResult = true;
   computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-  if (computerChoice === 'paper') {
-    computerChoiceBtn.style.padding = '2px 0 0 0';
-  }
-  if (computerChoice === 'scissors') {
-    computerChoiceBtn.style.padding = '12px 0 0 0';
-  } 
-  if (computerChoice === 'rock') {
-    computerChoiceBtn.style.padding = '10px 14px 0 0';
-  }
-
+  setPaddingToBtnFn(computerChoice, computerChoiceBtn);
 
   computerChoiceBtn.src = `./assets/images/${computerChoice}.svg`;
   computerChoiceBtn.style.transform = "scaleX(-1)";
