@@ -114,6 +114,7 @@ img {
   cursor: pointer;
   width: 105px;
   height: 100px;
+  transition: all 0.3s;
   box-shadow: rgba(156, 125, 208, 0.4) 0px 10px 20px,
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
@@ -232,6 +233,19 @@ img {
 
   .btn {
     width: 120px;
+  }
+}
+
+@media (min-width: 514px) {
+  .player-choice {
+    margin-left: 3.2rem;
+  }
+  .computer-choice {
+    margin-right: 3.2rem;
+  }
+
+  .btn {
+    width: 126px;
   }
 }
 
