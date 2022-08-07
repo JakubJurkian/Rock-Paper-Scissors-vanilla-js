@@ -59,16 +59,6 @@ img {
   gap: 10px;
 }
 
-.player img,
-.computer img {
-  transition: all 0.6s;
-}
-
-.player img:hover,
-.computer img:hover {
-  transform: rotate(0.5turn);
-}
-
 .computer-points {
   font-size: 48px;
   order: -1;
@@ -127,15 +117,6 @@ img {
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  background-color: rgba(255, 255, 255);
-}
-
-.btn:active {
-  transform: scale(0.95);
-}
-
 .paper {
   padding: 0 12px;
 }
@@ -168,6 +149,10 @@ img {
   touch-action: manipulation;
   will-change: box-shadow, transform;
   font-size: 20px;
+}
+
+.btn:active {
+  transform: translateY(6px);
 }
 
 .button-29:focus {
@@ -315,6 +300,16 @@ img {
     width: 130px;
   }
 
+  .player img,
+  .computer img {
+    transition: all 0.6s;
+  }
+
+  .player img:hover,
+  .computer img:hover {
+    transform: rotate(0.5turn);
+  }
+
   .player-points,
   .computer-points {
     font-size: 58px;
@@ -338,8 +333,13 @@ img {
     height: 120px;
   }
 
+  .btn:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255);
+  }
+
   .btn:active {
-    transform: scale(1);
+    transform: scale(0.95);
   }
 
   .clear-btn,
