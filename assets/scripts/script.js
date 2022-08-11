@@ -66,7 +66,9 @@ const selectHandler = async (choice) => {
   resultBtn.disabled = false;
 };
 
-const resetGame = async () => {
+const resetGame = async (btn) => {
+  btn.classList.add('lds-dual-ring');
+  await loading(800);
   playerChoice = null;
   computerChoice = null;
   if (resultText.classList.contains('text-result-show')) {
@@ -81,9 +83,10 @@ const resetGame = async () => {
   playerChoiceBtn.src = `./assets/images/field.svg`;
   computerChoiceBtn.src = `./assets/images/field.svg`;
   resultText.textContent = null;
-  resetBtn.disabled = true;
+  clearBtn.disabled = true;
   resultBtn.disabled = true;
   selectingBtnAfterCheckingResult = false;
+  btn.classList.remove('lds-dual-ring');
 };
 
 const setPaddingToBtnFn = (whoseChoice, whoseBtn) => {
@@ -129,36 +132,30 @@ resultBtn.addEventListener("click", async () => {
   const result = gameResult(playerChoice, computerChoice);
 
   if (playerPoints > 0 || computerPoints > 0) {
-    clearBtn.disabled = false;
+    resetBtn.disabled = false;
   }
 
   resultText.textContent = result;
   resultText.classList.add('text-result-show');
   resultBtn.classList.remove('lds-dual-ring');
   resultBtn.textContent = 'Run Game';
-  resetBtn.disabled = false;
+  clearBtn.disabled = false;
   resultBtn.disabled = true;
 });
 
-resetBtn.addEventListener("click", async () => {
-  resetBtn.classList.add('lds-dual-ring');
-  resetBtn.textContent = '';
-  await loading(800);
-  await resetGame();
-  resetBtn.classList.remove('lds-dual-ring');
-  resetBtn.textContent = 'New Game';
+clearBtn.addEventListener("click", async () => {
+  clearBtn.textContent = '';
+  await resetGame(clearBtn);
+  clearBtn.textContent = 'New Game';
 });
 
-clearBtn.addEventListener('click', async () => {
-  clearBtn.classList.add('lds-dual-ring');
-  clearBtn.textContent = '';
-  await loading(800);
+resetBtn.addEventListener('click', async () => {
+  resetBtn.textContent = '';
+  await resetGame(resetBtn);
   playerPoints = 0;
   computerPoints = 0;
   playerPointsField.textContent = 0;
   computerPointsField.textContent = 0;
-  clearBtn.disabled = true;
-  resetGame();
-  clearBtn.classList.remove('lds-dual-ring');
-  clearBtn.textContent = 'Reset Score';
+  resetBtn.textContent = 'Reset Score';
+  resetBtn.disabled = true;
 });
