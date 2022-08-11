@@ -96,6 +96,20 @@ img {
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 
+.player-choice-img {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.computer-choice-img {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.choice-img-show {
+  opacity: 1;
+}
+
 .buttons {
   border-top: 1px solid var(--main-bg-color);
   padding: 12px;
@@ -126,7 +140,6 @@ img {
 }
 
 .button-29 {
-  align-items: center;
   appearance: none;
   background-image: radial-gradient(
     100% 100% at 100% 0,
@@ -139,15 +152,14 @@ img {
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
   color: #fff;
   cursor: pointer;
-  display: inline-flex;
   font-family: "JetBrains Mono", monospace;
-  height: 74px;
+  width: 50%;
+  height: 70px;
   padding: 0 16px 0 16px;
   position: relative;
   transition: box-shadow 0.15s, transform 0.15s;
   user-select: none;
-  touch-action: manipulation;
-  will-change: box-shadow, transform;
+  text-align: center;
   font-size: 20px;
 }
 
@@ -194,16 +206,38 @@ img {
 .result-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .clear-btn {
   margin-top: 8px;
+  width: 100%;
 }
 
 .text-result {
   margin-bottom: 0.8rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.text-result-show {
+  opacity: 1;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-top: 6px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
 }
 
 @keyframes press {
@@ -218,6 +252,15 @@ img {
   }
 }
 
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 450px) {
   .player-choice {
     margin-left: 2rem;
@@ -226,8 +269,8 @@ img {
     margin-right: 2rem;
   }
 
-  .btn {
-    width: 120px;
+  .button-29 {
+    font-size: 22px;
   }
 }
 
@@ -240,7 +283,15 @@ img {
   }
 
   .btn {
-    width: 126px;
+    width: 120px;
+    height: 100px;
+  }
+
+  .button-29 {
+    width: 190px;
+  }
+  .clear-btn {
+    width: 220px;
   }
 }
 
@@ -259,6 +310,15 @@ img {
   .btn {
     width: 120px;
     height: 100px;
+  }
+
+  .button-29 {
+    width: 200px;
+    height: 74px;
+  }
+
+  .clear-btn {
+    width: 250px;
   }
 
   .player-choice {
@@ -330,8 +390,8 @@ img {
   }
   
   .btn {
-    width: 150px;
-    height: 120px;
+    width: 160px;
+    height: 130px;
   }
 
   .btn:hover {
@@ -343,9 +403,22 @@ img {
     transform: scale(0.95);
   }
 
-  .clear-btn,
-  .result-btn,
-  .reset-btn {
+  .text-result {
+    font-size: 3rem;
+  }
+
+  .button-29 {
     font-size: 28px;
+    width: 220px;
+    height: 84px;
+  }
+
+  .clear-btn {
+    width: 250px;
+  }
+
+  .lds-dual-ring:after {
+    width: 44px;
+    height: 44px;
   }
 }

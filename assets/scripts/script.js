@@ -10,20 +10,16 @@ const clearBtn = document.querySelector('.clear-btn');
 const playerPointsField = document.querySelector(".player-points");
 const computerPointsField = document.querySelector(".computer-points");
 
-let playerChoice = null;
-let computerChoice = null;
-let playerPoints = 0;
-let computerPoints = 0;
-const computerChoices = ["rock", "paper", "scissors"];
+let playerChoice = null, computerChoice = null;
+let playerPoints = 0, computerPoints = 0;
+const computerPossibleChoices = ["rock", "paper", "scissors"];
 
-const whoWin = (playerChoice, computerChoice) => {
+const gameResult = (playerChoice, computerChoice) => {
   if (
     (playerChoice === "rock" && computerChoice === "rock") ||
     (playerChoice === "paper" && computerChoice === "paper") ||
     (playerChoice === "scissors" && computerChoice === "scissors")
-  ) {
-    return "Draw!";
-  }
+  ) return "Draw!";
   if (
     (playerChoice === "rock" && computerChoice === "scissors") ||
     (playerChoice === "paper" && computerChoice === "rock") ||
@@ -44,34 +40,50 @@ const whoWin = (playerChoice, computerChoice) => {
   }
 };
 
-let afterCheckingResult = false;
+const loading = (miliseconds) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, miliseconds);
+  });
+};
 
-const selectHandler = (choice) => {
-  if (afterCheckingResult) return;
+let selectingBtnAfterCheckingResult = false;
+
+let afterResult = false;
+
+const selectHandler = async (choice) => {
+  if (selectingBtnAfterCheckingResult) return;
+  if (playerChoiceBtn.classList.contains('choice-img-show')) {
+    playerChoiceBtn.classList.remove('choice-img-show');
+    await loading(300);
+  }
 
   setPaddingToBtnFn(choice, playerChoiceBtn);
   playerChoiceBtn.src = `./assets/images/${choice}.svg`;
+  playerChoiceBtn.classList.add('choice-img-show');
   playerChoice = choice;
   resultBtn.disabled = false;
 };
 
-const resetGame = () => {
+const resetGame = async () => {
   playerChoice = null;
   computerChoice = null;
+  if (resultText.classList.contains('text-result-show')) {
+    resultText.classList.remove('text-result-show');
+    await loading(450);
+  }
   resultText.textContent = null;
   resetBtn.disabled = true;
   resultBtn.disabled = true;
-  afterCheckingResult = false;
+  selectingBtnAfterCheckingResult = false;
+  if (playerChoiceBtn.classList.contains('choice-img-show') && computerChoiceBtn.classList.contains('choice-img-show')) {
+    playerChoiceBtn.classList.remove('choice-img-show');
+    computerChoiceBtn.classList.remove('choice-img-show');
+  }
+  await loading(450);
   playerChoiceBtn.src = `./assets/images/field.svg`;
   computerChoiceBtn.src = `./assets/images/field.svg`;
-};
-
-const loading = () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, 800);
-  });
 };
 
 const setPaddingToBtnFn = (whoseChoice, whoseBtn) => {
@@ -94,44 +106,60 @@ rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
 paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
 scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
 
+let resultChecked = false;
+
 resultBtn.addEventListener("click", async () => {
   if (!playerChoice) return;
 
-  resultBtn.textContent = 'Loading...';
-  await loading();
-  afterCheckingResult = true;
-  computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  setPaddingToBtnFn(computerChoice, computerChoiceBtn);
+  if (computerChoiceBtn.classList.contains('choice-img-show')) {
+    computerChoiceBtn.classList.remove('choice-img-show');
+  }
 
+  resultBtn.classList.add('lds-dual-ring');
+  resultBtn.textContent = '';
+  await loading(800);
+  selectingBtnAfterCheckingResult = true;
+
+  computerChoice = computerPossibleChoices[Math.floor(Math.random() * computerPossibleChoices.length)];
+  setPaddingToBtnFn(computerChoice, computerChoiceBtn);
   computerChoiceBtn.src = `./assets/images/${computerChoice}.svg`;
+  computerChoiceBtn.classList.add('choice-img-show');
   computerChoiceBtn.style.transform = "scaleX(-1)";
-  const result = whoWin(playerChoice, computerChoice);
+
+  const result = gameResult(playerChoice, computerChoice);
 
   if (playerPoints > 0 || computerPoints > 0) {
     clearBtn.disabled = false;
   }
 
   resultText.textContent = result;
+  resultText.classList.add('text-result-show');
+  resultBtn.classList.remove('lds-dual-ring');
   resultBtn.textContent = 'Run Game';
   resetBtn.disabled = false;
   resultBtn.disabled = true;
 });
 
 resetBtn.addEventListener("click", async () => {
-  resetBtn.textContent = 'Loading...';
-  await loading();
+  resetBtn.classList.add('lds-dual-ring');
+  resetBtn.textContent = '';
+  await loading(800);
+  resetBtn.classList.remove('lds-dual-ring');
   resetGame();
+  
   resetBtn.textContent = 'New Game';
 });
 
 clearBtn.addEventListener('click', async () => {
-  clearBtn.textContent = 'Loading...';
-  await loading();
+  clearBtn.classList.add('lds-dual-ring');
+  clearBtn.textContent = '';
+  await loading(800);
   playerPoints = 0;
   computerPoints = 0;
   playerPointsField.textContent = 0;
   computerPointsField.textContent = 0;
   clearBtn.disabled = true;
   resetGame();
+  clearBtn.classList.remove('lds-dual-ring');
   clearBtn.textContent = 'Reset Score';
 });
