@@ -67,6 +67,7 @@ const selectHandler = async (choice) => {
 };
 
 const resetGame = async (btn) => {
+  clearBtn.disabled = true;
   btn.classList.add('lds-dual-ring');
   await loading(800);
   playerChoice = null;
@@ -83,7 +84,6 @@ const resetGame = async (btn) => {
   playerChoiceBtn.src = `./assets/images/field.svg`;
   computerChoiceBtn.src = `./assets/images/field.svg`;
   resultText.textContent = null;
-  clearBtn.disabled = true;
   resultBtn.disabled = true;
   selectingBtnAfterCheckingResult = false;
   btn.classList.remove('lds-dual-ring');
@@ -118,6 +118,7 @@ resultBtn.addEventListener("click", async () => {
     computerChoiceBtn.classList.remove('choice-img-show');
   }
 
+  resultBtn.disabled = true;
   resultBtn.classList.add('lds-dual-ring');
   resultBtn.textContent = '';
   await loading(800);
@@ -140,7 +141,6 @@ resultBtn.addEventListener("click", async () => {
   resultBtn.classList.remove('lds-dual-ring');
   resultBtn.textContent = 'Run Game';
   clearBtn.disabled = false;
-  resultBtn.disabled = true;
 });
 
 clearBtn.addEventListener("click", async () => {
@@ -150,12 +150,12 @@ clearBtn.addEventListener("click", async () => {
 });
 
 resetBtn.addEventListener('click', async () => {
+  resetBtn.disabled = true;
   resetBtn.textContent = '';
   await resetGame(resetBtn);
   playerPoints = 0;
   computerPoints = 0;
   playerPointsField.textContent = 0;
   computerPointsField.textContent = 0;
-  resetBtn.textContent = 'Reset Score';
-  resetBtn.disabled = true;
+  resetBtn.textContent = 'Reset Game';
 });
