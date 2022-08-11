@@ -71,12 +71,8 @@ const resetGame = async () => {
   computerChoice = null;
   if (resultText.classList.contains('text-result-show')) {
     resultText.classList.remove('text-result-show');
-    await loading(450);
   }
-  resultText.textContent = null;
-  resetBtn.disabled = true;
-  resultBtn.disabled = true;
-  selectingBtnAfterCheckingResult = false;
+
   if (playerChoiceBtn.classList.contains('choice-img-show') && computerChoiceBtn.classList.contains('choice-img-show')) {
     playerChoiceBtn.classList.remove('choice-img-show');
     computerChoiceBtn.classList.remove('choice-img-show');
@@ -84,6 +80,10 @@ const resetGame = async () => {
   await loading(450);
   playerChoiceBtn.src = `./assets/images/field.svg`;
   computerChoiceBtn.src = `./assets/images/field.svg`;
+  resultText.textContent = null;
+  resetBtn.disabled = true;
+  resultBtn.disabled = true;
+  selectingBtnAfterCheckingResult = false;
 };
 
 const setPaddingToBtnFn = (whoseChoice, whoseBtn) => {
@@ -144,9 +144,8 @@ resetBtn.addEventListener("click", async () => {
   resetBtn.classList.add('lds-dual-ring');
   resetBtn.textContent = '';
   await loading(800);
+  await resetGame();
   resetBtn.classList.remove('lds-dual-ring');
-  resetGame();
-  
   resetBtn.textContent = 'New Game';
 });
 
