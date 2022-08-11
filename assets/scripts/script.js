@@ -50,8 +50,6 @@ const loading = (miliseconds) => {
 
 let selectingBtnAfterCheckingResult = false;
 
-let afterResult = false;
-
 const selectHandler = async (choice) => {
   if (selectingBtnAfterCheckingResult) return;
   if (playerChoiceBtn.classList.contains('choice-img-show')) {
@@ -64,6 +62,14 @@ const selectHandler = async (choice) => {
   playerChoiceBtn.classList.add('choice-img-show');
   playerChoice = choice;
   resultBtn.disabled = false;
+};
+
+const computerPick = () => {
+  computerChoice = computerPossibleChoices[Math.floor(Math.random() * computerPossibleChoices.length)];
+  setPaddingToBtnFn(computerChoice, computerChoiceBtn);
+  computerChoiceBtn.src = `./assets/images/${computerChoice}.svg`;
+  computerChoiceBtn.classList.add('choice-img-show');
+  computerChoiceBtn.style.transform = "scaleX(-1)";
 };
 
 const resetGame = async (btn) => {
@@ -101,7 +107,7 @@ const setPaddingToBtnFn = (whoseChoice, whoseBtn) => {
       whoseBtn.style.padding = '10px 14px 0 0';
       break;
     default:
-      //...
+      return;
   }
 };
 
@@ -109,11 +115,8 @@ rockBtn.addEventListener("click", selectHandler.bind(null, "rock"));
 paperBtn.addEventListener("click", selectHandler.bind(null, "paper"));
 scissorsBtn.addEventListener("click", selectHandler.bind(null, "scissors"));
 
-let resultChecked = false;
-
 resultBtn.addEventListener("click", async () => {
   if (!playerChoice) return;
-
   if (computerChoiceBtn.classList.contains('choice-img-show')) {
     computerChoiceBtn.classList.remove('choice-img-show');
   }
@@ -124,12 +127,7 @@ resultBtn.addEventListener("click", async () => {
   await loading(800);
   selectingBtnAfterCheckingResult = true;
 
-  computerChoice = computerPossibleChoices[Math.floor(Math.random() * computerPossibleChoices.length)];
-  setPaddingToBtnFn(computerChoice, computerChoiceBtn);
-  computerChoiceBtn.src = `./assets/images/${computerChoice}.svg`;
-  computerChoiceBtn.classList.add('choice-img-show');
-  computerChoiceBtn.style.transform = "scaleX(-1)";
-
+  computerPick();
   const result = gameResult(playerChoice, computerChoice);
 
   if (playerPoints > 0 || computerPoints > 0) {
