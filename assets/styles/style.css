@@ -157,6 +157,7 @@ img {
   height: 70px;
   padding: 0 16px 0 16px;
   position: relative;
+  transition: all 1s;
   transition: box-shadow 0.15s, transform 0.15s;
   user-select: none;
   text-align: center;
@@ -192,7 +193,7 @@ img {
 .result {
   padding: 16px;
   font-size: 32px;
-  /* height: 240px; */
+  height: 240px;
   width: 98%;
   min-width: 350px;
   margin: 0.5rem auto;
@@ -356,6 +357,7 @@ img {
   }
   .result {
     width: 730px;
+    height: auto;
   }
 
   .players {
