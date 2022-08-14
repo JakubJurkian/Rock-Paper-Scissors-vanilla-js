@@ -14,7 +14,7 @@ let playerChoice = null, computerChoice = null;
 let playerPoints = 0, computerPoints = 0;
 const computerPossibleChoices = ["rock", "paper", "scissors"];
 
-const gameResult = (playerChoice, computerChoice) => {
+const gameResult = async(playerChoice, computerChoice) => {
   if (
     (playerChoice === "rock" && computerChoice === "rock") ||
     (playerChoice === "paper" && computerChoice === "paper") ||
@@ -26,7 +26,10 @@ const gameResult = (playerChoice, computerChoice) => {
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
     playerPoints += 1;
+    playerPointsField.classList.add('hide');
+    await loading(100);
     playerPointsField.textContent = playerPoints;
+    playerPointsField.classList.remove('hide');
     return "You won!";
   }
   if (
@@ -35,7 +38,10 @@ const gameResult = (playerChoice, computerChoice) => {
     (playerChoice === "paper" && computerChoice === "scissors")
   ) {
     computerPoints += 1;
+    computerPointsField.classList.add('hide');
+    await loading(100);
     computerPointsField.textContent = computerPoints;
+    computerPointsField.classList.remove('hide');
     return "You lost!";
   }
 };
@@ -72,7 +78,7 @@ const computerPick = () => {
   computerChoiceBtn.style.transform = "scaleX(-1)";
 };
 
-const resetGame = async (btn) => {
+const newGame = async (btn) => {
   clearBtn.disabled = true;
   btn.classList.add('lds-dual-ring');
   await loading(800);
@@ -128,7 +134,7 @@ resultBtn.addEventListener("click", async () => {
   selectingBtnAfterCheckingResult = true;
 
   computerPick();
-  const result = gameResult(playerChoice, computerChoice);
+  const result = await gameResult(playerChoice, computerChoice);
 
   if (playerPoints > 0 || computerPoints > 0) {
     resetBtn.disabled = false;
@@ -143,17 +149,23 @@ resultBtn.addEventListener("click", async () => {
 
 clearBtn.addEventListener("click", async () => {
   clearBtn.textContent = '';
-  await resetGame(clearBtn);
+  await newGame(clearBtn);
   clearBtn.textContent = 'New Game';
 });
 
 resetBtn.addEventListener('click', async () => {
   resetBtn.disabled = true;
   resetBtn.textContent = '';
-  await resetGame(resetBtn);
+  await newGame(resetBtn);
   playerPoints = 0;
   computerPoints = 0;
-  playerPointsField.textContent = 0;
-  computerPointsField.textContent = 0;
+
+  playerPointsField.classList.add('hide');
+  computerPointsField.classList.add('hide');
+  await loading(100);
+  playerPointsField.textContent = playerPoints;
+  computerPointsField.textContent = computerPoints;
+  playerPointsField.classList.remove('hide');
+  computerPointsField.classList.remove('hide');
   resetBtn.textContent = 'Reset Game';
 });
