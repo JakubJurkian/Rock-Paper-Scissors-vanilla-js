@@ -7,42 +7,59 @@ const resultBtn = document.querySelector(".result-btn");
 const resultText = document.querySelector(".text-result");
 const resetBtn = document.querySelector(".reset-btn");
 const clearBtn = document.querySelector('.clear-btn');
+const playerAvatar = document.querySelector('.player img');
+const computerAvatar = document.querySelector('.computer img');
 const playerPointsField = document.querySelector(".player-points");
 const computerPointsField = document.querySelector(".computer-points");
 
 let playerChoice = null, computerChoice = null;
 let playerPoints = 0, computerPoints = 0;
+let selectingBtnAfterCheckingResult = false;
 const computerPossibleChoices = ["rock", "paper", "scissors"];
 
-const gameResult = async(playerChoice, computerChoice) => {
+const gameResult = (player, computer) => {
   if (
-    (playerChoice === "rock" && computerChoice === "rock") ||
-    (playerChoice === "paper" && computerChoice === "paper") ||
-    (playerChoice === "scissors" && computerChoice === "scissors")
+    (player === "rock" && computer === "rock") ||
+    (player === "paper" && computer === "paper") ||
+    (player === "scissors" && computer === "scissors")
   ) return "Draw!";
   if (
-    (playerChoice === "rock" && computerChoice === "scissors") ||
-    (playerChoice === "paper" && computerChoice === "rock") ||
-    (playerChoice === "scissors" && computerChoice === "paper")
+    (player === "rock" && computer === "scissors") ||
+    (player === "paper" && computer === "rock") ||
+    (player === "scissors" && computer === "paper")
   ) {
-    playerPoints += 1;
-    playerPointsField.classList.add('hide');
-    await loading(100);
-    playerPointsField.textContent = playerPoints;
-    playerPointsField.classList.remove('hide');
     return "You won!";
   }
   if (
-    (playerChoice === "scissors" && computerChoice === "rock") ||
-    (playerChoice === "rock" && computerChoice === "paper") ||
-    (playerChoice === "paper" && computerChoice === "scissors")
+    (player === "scissors" && computer === "rock") ||
+    (player === "rock" && computer === "paper") ||
+    (player === "paper" && computer === "scissors")
   ) {
+    return "You lost!";
+  }
+};
+
+const addingPoints = async(player, computer) => {
+  const result = gameResult(player, computer);
+  if (result === 'You won!') {
+    playerPoints += 1;
+    playerPointsField.classList.add('hide');
+    await loading(200);
+    playerPointsField.textContent = playerPoints;
+    playerPointsField.classList.remove('hide');
+    playerAvatar.classList.add('zoom-in');
+    await loading(300);
+    playerAvatar.classList.remove('zoom-in');
+  }
+  if (result === 'You lost!') {
     computerPoints += 1;
     computerPointsField.classList.add('hide');
     await loading(100);
     computerPointsField.textContent = computerPoints;
     computerPointsField.classList.remove('hide');
-    return "You lost!";
+    computerAvatar.classList.add('zoom-in');
+    await loading(300);
+    computerAvatar.classList.remove('zoom-in');
   }
 };
 
@@ -54,9 +71,7 @@ const loading = (miliseconds) => {
   });
 };
 
-let selectingBtnAfterCheckingResult = false;
-
-const selectHandler = async (choice) => {
+const selectHandler = async(choice) => {
   if (selectingBtnAfterCheckingResult) return;
   if (playerChoiceBtn.classList.contains('choice-img-show')) {
     playerChoiceBtn.classList.remove('choice-img-show');
@@ -88,7 +103,8 @@ const newGame = async (btn) => {
     resultText.classList.remove('text-result-show');
   }
 
-  if (playerChoiceBtn.classList.contains('choice-img-show') && computerChoiceBtn.classList.contains('choice-img-show')) {
+  if (playerChoiceBtn.classList.contains('choice-img-show') || 
+  computerChoiceBtn.classList.contains('choice-img-show')) {
     playerChoiceBtn.classList.remove('choice-img-show');
     computerChoiceBtn.classList.remove('choice-img-show');
   }
@@ -127,24 +143,24 @@ resultBtn.addEventListener("click", async () => {
     computerChoiceBtn.classList.remove('choice-img-show');
   }
 
+  selectingBtnAfterCheckingResult = true;
+
   resultBtn.disabled = true;
   resultBtn.classList.add('lds-dual-ring');
   resultBtn.textContent = '';
   await loading(800);
-  selectingBtnAfterCheckingResult = true;
-
   computerPick();
-  const result = await gameResult(playerChoice, computerChoice);
-
-  if (playerPoints > 0 || computerPoints > 0) {
-    resetBtn.disabled = false;
-  }
-
+  const result = gameResult(playerChoice, computerChoice);
   resultText.textContent = result;
   resultText.classList.add('text-result-show');
   resultBtn.classList.remove('lds-dual-ring');
   resultBtn.textContent = 'Run Game';
   clearBtn.disabled = false;
+
+  await addingPoints(playerChoice, computerChoice);
+  if (playerPoints > 0 || computerPoints > 0) {
+    resetBtn.disabled = false;
+  }
 });
 
 clearBtn.addEventListener("click", async () => {
@@ -156,13 +172,11 @@ clearBtn.addEventListener("click", async () => {
 resetBtn.addEventListener('click', async () => {
   resetBtn.disabled = true;
   resetBtn.textContent = '';
-  await newGame(resetBtn);
   playerPoints = 0;
   computerPoints = 0;
-
   playerPointsField.classList.add('hide');
   computerPointsField.classList.add('hide');
-  await loading(100);
+  await newGame(resetBtn);
   playerPointsField.textContent = playerPoints;
   computerPointsField.textContent = computerPoints;
   playerPointsField.classList.remove('hide');
