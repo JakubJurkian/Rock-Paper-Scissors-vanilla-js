@@ -8,6 +8,7 @@
   padding: 0;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  user-select: none;
 }
 
 body {
@@ -60,12 +61,27 @@ img {
 }
 
 .computer-points {
-  font-size: 48px;
   order: -1;
 }
 
-.player-points {
+.player-points,
+.computer-points {
   font-size: 48px;
+  transition: all 0.4s;
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.player img,
+.computer img {
+  transition: all 0.4s;
+}
+
+.zoom-in {
+  transform: scale(1.1);
 }
 
 .players-choices {
@@ -368,29 +384,13 @@ img {
     width: 130px;
   }
 
-  .player img,
-  .computer img {
-    transition: all 0.4s;
-  }
-
-  .zoom-in {
-    transform: scale(1.1);
-  }
-
   .player img:hover,
   .computer img:hover {
     transform: rotate(0.5turn);
   }
 
-  .player-points,
-  .computer-points {
+  .player-points {
     font-size: 58px;
-    transition: all 0.4s;
-    opacity: 1;
-  }
-
-  .hide {
-    opacity: 0;
   }
 
   .player-choice,
