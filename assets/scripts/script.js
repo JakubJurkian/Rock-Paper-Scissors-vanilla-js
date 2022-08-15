@@ -42,23 +42,25 @@ const gameResult = (player, computer) => {
 const addingPoints = async(player, computer) => {
   const result = gameResult(player, computer);
   if (result === 'You won!') {
+    await loading(300);
     playerPoints += 1;
     playerPointsField.classList.add('hide');
     await loading(200);
     playerPointsField.textContent = playerPoints;
     playerPointsField.classList.remove('hide');
     playerAvatar.classList.add('zoom-in');
-    await loading(300);
+    await loading(400);
     playerAvatar.classList.remove('zoom-in');
   }
   if (result === 'You lost!') {
+    await loading(300);
     computerPoints += 1;
     computerPointsField.classList.add('hide');
-    await loading(100);
+    await loading(200);
     computerPointsField.textContent = computerPoints;
     computerPointsField.classList.remove('hide');
     computerAvatar.classList.add('zoom-in');
-    await loading(300);
+    await loading(400);
     computerAvatar.classList.remove('zoom-in');
   }
 };

@@ -389,7 +389,8 @@ img {
     transform: rotate(0.5turn);
   }
 
-  .player-points {
+  .player-points,
+  .computer-points {
     font-size: 58px;
   }
 
