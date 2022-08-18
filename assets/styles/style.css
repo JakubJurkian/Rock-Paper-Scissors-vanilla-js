@@ -68,6 +68,7 @@ img {
 .computer-points {
   font-size: 48px;
   transition: all 0.4s;
+  will-change: opacity;
   opacity: 1;
 }
 
@@ -78,6 +79,7 @@ img {
 .player img,
 .computer img {
   transition: all 0.4s;
+  will-change: transform;
 }
 
 .zoom-in {
@@ -112,14 +114,11 @@ img {
     rgba(156, 125, 208, 0.4) 0px 6px 6px;
 }
 
-.player-choice-img {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
+.player-choice-img,
 .computer-choice-img {
   opacity: 0;
   transition: opacity 0.3s;
+  will-change: opacity;
 }
 
 .choice-img-show {
@@ -237,6 +236,7 @@ img {
   max-height: 0;
   opacity: 0;
   transition: all 0.5s;
+  will-change: opacity, max-height;
 }
 
 .text-result-show {
