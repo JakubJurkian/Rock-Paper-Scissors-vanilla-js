@@ -318,11 +318,16 @@ img {
   }
 }
 
-@media (min-width: 546px) {
+@media (min-width: 566px) {
   .container,
   .result {
     width: 546px;
   }
+
+  .player img:hover,
+  .computer img:hover {
+  transform: rotate(0.5turn);
+}
 
   .buttons {
     justify-content: center;
@@ -366,7 +371,7 @@ img {
 
 @media (min-width: 750px) {
   .container {
-    margin: 2rem auto 0 auto;
+    margin: 0.4rem auto 0 auto;
     width: 730px;
     height: 500px;
   }
@@ -382,11 +387,6 @@ img {
   .computer {
     height: 100px;
     width: 130px;
-  }
-
-  .player img:hover,
-  .computer img:hover {
-    transform: rotate(0.5turn);
   }
 
   .player-points,
