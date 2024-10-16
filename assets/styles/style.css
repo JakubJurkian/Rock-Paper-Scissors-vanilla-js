@@ -13,7 +13,7 @@
 
 body {
   background-image: linear-gradient(#dc2424, #4a569d);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
