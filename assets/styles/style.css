@@ -382,11 +382,11 @@ img {
 @media (min-width: 750px) {
   .container {
     margin: 0.4rem auto 0 auto;
-    width: 730px;
+    width: 630px;
     height: 500px;
   }
   .result {
-    width: 730px;
+    width: 630px;
   }
 
   .players {
@@ -419,8 +419,8 @@ img {
   }
 
   .btn {
-    width: 160px;
-    height: 130px;
+    width: 150px;
+    height: 120px;
   }
 
   .btn:hover {
